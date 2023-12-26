@@ -22,7 +22,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('drf.urls')),
     path('api/team/', TeamListView.as_view(), name='team-list'),
 ]
 
