@@ -4,4 +4,4 @@ venv/
 __pycache__
 cert.pem
 key.pem
-images
+media
