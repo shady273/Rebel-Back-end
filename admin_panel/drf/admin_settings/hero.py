@@ -1,12 +1,9 @@
-from django.contrib import admin
-
-from drf.admin_settings.base import BaseAdmin
+from drf.admin_settings.base import BaseAdmin, BasePhotoInline
 from drf.models.photo import Photo
 
 
-class SectionPhotoInline(admin.StackedInline):
+class SectionPhotoInline(BasePhotoInline):
     model = Photo
-    extra = 1
     fk_name = 'section'
     exclude = ['activity', 'donate']
 
