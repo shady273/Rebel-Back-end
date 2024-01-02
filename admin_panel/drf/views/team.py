@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView
 
-from drf.models import Teammate
+from drf.models.temmate import Teammate
 from drf.serializers import TeamSerializer
 
 
