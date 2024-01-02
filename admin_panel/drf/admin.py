@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from drf.models.activity import OurActivity, TextActivity
+from drf.models.donate import Donate
 from drf.models.hero import Section
 from drf.models.photo import Photo
 from drf.models.temmate import Teammate
@@ -49,6 +50,24 @@ class ActivityAdmin(admin.ModelAdmin):
 
 
 admin.site.register(OurActivity, ActivityAdmin)
+
+
+class DonatePhotoInline(admin.StackedInline):
+    model = Photo
+    extra = 1
+    exclude = ['activity', 'section']
+
+
+class DonateAdmin(admin.ModelAdmin):
+    inlines = [DonatePhotoInline]
+
+    def has_add_permission(self, request):
+        if self.model.objects.exists():
+            return False
+        return super().has_add_permission(request)
+
+
+admin.site.register(Donate, DonateAdmin)
 
 admin.site.register(Teammate)
 

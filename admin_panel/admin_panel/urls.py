@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from drf.views.avtivity import ActivityView
+from drf.views.donate import DonateView
 from drf.views.hero import HeroView
 from drf.views.team import TeamListView
 
@@ -28,6 +29,7 @@ urlpatterns = [
     path('api/team/', TeamListView.as_view(), name='team'),
     path('api/hero/', HeroView.as_view(), name='hero'),
     path('api/activity/', ActivityView.as_view(), name='activity'),
+    path('api/donate/', DonateView.as_view(), name='activity'),
 ]
 
 if settings.DEBUG:
