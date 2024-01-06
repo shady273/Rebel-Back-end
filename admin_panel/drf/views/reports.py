@@ -8,5 +8,5 @@ from drf.serializers import ReportsSerializer
 class ReportsView(APIView):
     def get(self, request, *args, **kwargs):
         queryset = Reports.objects.first()
-        serializer = ReportsSerializer(queryset)
+        serializer = ReportsSerializer(queryset, context={'request': request})
         return Response(serializer.data)

@@ -8,5 +8,5 @@ from drf.serializers import SectionSerializer
 class HeroView(APIView):
     def get(self, request, *args, **kwargs):
         queryset = Section.objects.first()
-        serializer = SectionSerializer(queryset)
+        serializer = SectionSerializer(queryset, context={'request': request})
         return Response(serializer.data)

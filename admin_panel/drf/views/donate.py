@@ -8,5 +8,5 @@ from drf.serializers import DonateSerializer
 class DonateView(APIView):
     def get(self, request, *args, **kwargs):
         queryset = Donate.objects.first()
-        serializer = DonateSerializer(queryset)
+        serializer = DonateSerializer(queryset, context={'request': request})
         return Response(serializer.data)
