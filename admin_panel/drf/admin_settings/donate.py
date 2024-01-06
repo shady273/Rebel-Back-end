@@ -34,7 +34,7 @@ class PhotoInlineForm(forms.ModelForm):
 class DonatePhotoInline(admin.StackedInline):
     model = Photo
     extra = 1
-    exclude = ['activity', 'section']
+    exclude = ['activity', 'section', 'merch']
     max_num = 1
     form = PhotoInlineForm
 

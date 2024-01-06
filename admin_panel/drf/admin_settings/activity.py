@@ -6,13 +6,13 @@ from drf.models.photo import Photo
 class TextActivityInline(BaseInline):
     model = TextActivity
     fk_name = 'text_activity'
-    exclude = ['section', 'donate']
+    exclude = ['section', 'donate', 'merch']
 
 
 class ActivityPhotoInline(PaginatedInline):
     model = Photo
     fk_name = 'activity'
-    exclude = ['section', 'donate']
+    exclude = ['section', 'donate', 'merch']
 
 
 class ActivityAdmin(BaseAdmin):

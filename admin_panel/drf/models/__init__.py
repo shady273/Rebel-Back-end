@@ -4,3 +4,4 @@ from .hero import *
 from .photo import *
 from .reports import *
 from .temmate import *
+from .merch import *

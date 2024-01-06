@@ -4,7 +4,6 @@ from drf.models import Reports, ReportsImage
 
 class ReportsImageInline(BaseInline):
     model = ReportsImage
-    exclude = ['section', 'donate']
 
 
 class ReportsAdmin(BaseAdmin):

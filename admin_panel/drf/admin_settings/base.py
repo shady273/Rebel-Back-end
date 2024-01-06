@@ -27,3 +27,4 @@ class BaseInline(admin.StackedInline):
 
 class PaginatedInline(TabularInlinePaginated):
     per_page = 5
+

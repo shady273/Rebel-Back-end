@@ -5,7 +5,7 @@ from drf.models.photo import Photo
 class SectionPhotoInline(BaseInline):
     model = Photo
     fk_name = 'section'
-    exclude = ['activity', 'donate']
+    exclude = ['activity', 'donate', 'merch']
 
 
 class SectionAdmin(BaseAdmin):
