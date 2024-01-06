@@ -8,5 +8,5 @@ from drf.serializers import MerchSerializer
 class MerchView(APIView):
     def get(self, request, *args, **kwargs):
         queryset = Merch.objects.first()
-        serializer = MerchSerializer(queryset)
+        serializer = MerchSerializer(queryset, context={'request': request})
         return Response(serializer.data)
