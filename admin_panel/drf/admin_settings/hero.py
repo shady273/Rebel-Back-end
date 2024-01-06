@@ -1,11 +1,11 @@
-from drf.admin_settings.base import BaseAdmin, BasePhotoInline
+from drf.admin_settings.base import BaseAdmin, BaseInline
 from drf.models.photo import Photo
 
 
-class SectionPhotoInline(BasePhotoInline):
+class SectionPhotoInline(BaseInline):
     model = Photo
     fk_name = 'section'
-    exclude = ['activity', 'donate']
+    exclude = ['activity', 'donate', 'merch']
 
 
 class SectionAdmin(BaseAdmin):

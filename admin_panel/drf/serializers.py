@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from drf.models import ReportsImage, Reports, Merch
 from drf.models.activity import OurActivity, TextActivity
 from drf.models.donate import Donate
 from drf.models.hero import Section
@@ -48,3 +49,25 @@ class DonateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donate
         fields = ['id', 'text_uk', 'text_en', 'goal_uk', 'goal_en', 'donata_link', 'photos']
+
+
+class ReportsImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReportsImage
+        fields = ['id', 'title_uk', 'title_en', 'quantity', 'image']
+
+
+class ReportsSerializer(serializers.ModelSerializer):
+    photos = ReportsImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Reports
+        fields = ['id', 'text_uk', 'text_en', 'photos']
+
+
+class MerchSerializer(serializers.ModelSerializer):
+    photos = PhotoSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Merch
+        fields = ['id', 'text_uk', 'text_en', 'photos']

@@ -39,12 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'drf.apps.DrfConfig',
+    'drf',
     'rest_framework',
     'django_cleanup.apps.CleanupConfig',
     'rest_authtoken',
     'corsheaders',
     'django_extensions',
+    'django_admin_inline_paginator',
 ]
 
 MIDDLEWARE = [

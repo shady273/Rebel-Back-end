@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.shortcuts import redirect
+from django_admin_inline_paginator.admin import TabularInlinePaginated
 
 
 class BaseAdmin(admin.ModelAdmin):
@@ -16,8 +17,14 @@ class BaseAdmin(admin.ModelAdmin):
         return super().has_add_permission(request)
 
 
-class BasePhotoInline(admin.StackedInline):
+class BaseInline(admin.StackedInline):
+
     def get_extra(self, request, obj=None, **kwargs):
         if obj is not None:
             return 0
         return 1
+
+
+class PaginatedInline(TabularInlinePaginated):
+    per_page = 5
+
