@@ -5,6 +5,7 @@ from drf.views.donate import DonateView
 from drf.views.hero import HeroView
 from drf.views.merch import MerchView
 from drf.views.reports import ReportsView
+from drf.views.support import SupportListView
 from drf.views.team import TeamListView
 
 urlpatterns = [
@@ -14,4 +15,5 @@ urlpatterns = [
     path('donate/', DonateView.as_view(), name='donate'),
     path('reports/', ReportsView.as_view(), name='reports'),
     path('merch/', MerchView.as_view(), name='merch'),
+    path('support/', SupportListView.as_view(), name='support'),
 ]
