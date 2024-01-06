@@ -3,6 +3,8 @@ from django.contrib import admin
 from drf.admin_settings.activity import ActivityAdmin
 from drf.admin_settings.donate import DonateAdmin
 from drf.admin_settings.hero import SectionAdmin
+from drf.admin_settings.reports import ReportsAdmin
+from drf.models import Reports
 from drf.models.activity import OurActivity
 from drf.models.donate import Donate
 from drf.models.hero import Section
@@ -13,6 +15,8 @@ admin.site.register(Section, SectionAdmin)
 admin.site.register(OurActivity, ActivityAdmin)
 
 admin.site.register(Donate, DonateAdmin)
+
+admin.site.register(Reports, ReportsAdmin)
 
 admin.site.register(Teammate)
 
