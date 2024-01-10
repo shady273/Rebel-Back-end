@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_extensions',
     'django_admin_inline_paginator',
+    'report',
 ]
 
 MIDDLEWARE = [
@@ -61,10 +62,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'admin_panel.urls'
 
+STATIC_URL = '/static/'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'drf/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
