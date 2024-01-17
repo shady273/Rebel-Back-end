@@ -5,20 +5,6 @@ from drf.admin_settings.base import BaseAdmin
 from drf.models.photo import Photo
 
 
-class PNGFilter(admin.SimpleListFilter):
-    title = 'Format'
-    parameter_name = 'format'
-
-    def lookups(self, request, model_admin):
-        return (
-            ('png', 'PNG'),
-        )
-
-    def queryset(self, request, queryset):
-        if self.value() == 'png':
-            return queryset.filter(image__endswith='.png')
-
-
 class PhotoInlineForm(forms.ModelForm):
     class Meta:
         model = Photo
@@ -26,8 +12,8 @@ class PhotoInlineForm(forms.ModelForm):
 
     def clean_image(self):
         image = self.cleaned_data['image']
-        if not image.name.lower().endswith('.png'):
-            raise forms.ValidationError('Please upload only PNG images.')
+        if not image.name.lower().endswith(('.png', '.PNG')):
+            raise forms.ValidationError('Будь ласка, завантажуйте тільки зображення у форматі PNG.')
         return image
 
 

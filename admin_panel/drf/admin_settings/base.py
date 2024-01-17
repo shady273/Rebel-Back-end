@@ -4,6 +4,11 @@ from django_admin_inline_paginator.admin import TabularInlinePaginated
 
 
 class BaseAdmin(admin.ModelAdmin):
+    def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_save_and_add_another'] = False
+        return super().changeform_view(request, object_id, form_url, extra_context=extra_context)
+
     def changelist_view(self, request, extra_context=None):
         obj = self.model.objects.first()
         if obj:
@@ -27,4 +32,3 @@ class BaseInline(admin.StackedInline):
 
 class PaginatedInline(TabularInlinePaginated):
     per_page = 5
-

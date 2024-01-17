@@ -5,6 +5,7 @@ from drf.models.activity import OurActivity, TextActivity
 from drf.models.donate import Donate
 from drf.models.hero import Section
 from drf.models.photo import Photo
+from drf.models.quick_donate import QuickDonate
 from drf.models.support import Support
 from drf.models.temmate import Teammate
 
@@ -78,3 +79,9 @@ class SupportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Support
         fields = ['id', 'name_uk', 'name_en', 'link', 'logo']
+
+
+class QuickDonateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QuickDonate
+        fields = ['id', 'donate_link']

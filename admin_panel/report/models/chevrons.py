@@ -7,4 +7,4 @@ class ChevronPhoto(models.Model):
     image = models.ImageField(upload_to='images/photos')
 
     class Meta:
-        verbose_name_plural = 'Шеврони'
+        verbose_name_plural = 'Військові друзі'

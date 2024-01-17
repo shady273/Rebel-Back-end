@@ -7,7 +7,7 @@ class Support(models.Model):
     name_uk = models.CharField(max_length=255, null=False)
     name_en = models.CharField(max_length=255, null=False)
     link = models.CharField(max_length=255, blank=True, null=True)
-    logo = models.ImageField(upload_to='images/support_logo', )
+    logo = models.ImageField(upload_to='images/support_logo')
 
     def __str__(self):
         return self.name_uk
