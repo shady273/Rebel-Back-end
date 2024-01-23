@@ -7,7 +7,7 @@ class BaseAdmin(admin.ModelAdmin):
     # def changelist_view(self, request, extra_context=None):
     #     obj = self.model.objects.first()
     #     if obj:
-    #         return redirect('admin:%s_%s_change' % (self.model._meta.app_label, self.model._meta.model_name), obj.id)
+    #         return redirect('admin_panel:%s_%s_change' % (self.model._meta.app_label, self.model._meta.model_name), obj.id)
     #     else:
     #         return super().add_view(request, extra_context)
 
