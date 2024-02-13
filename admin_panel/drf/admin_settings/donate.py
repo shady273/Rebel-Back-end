@@ -9,12 +9,15 @@ class PhotoInlineForm(forms.ModelForm):
     class Meta:
         model = Photo
         fields = '__all__'
+        help_texts = {
+            'photo': 'Додайте фото з необхідними розмірами та співвідношенням сторін.'
+        }
 
-    def clean_image(self):
-        image = self.cleaned_data['image']
-        if not image.name.lower().endswith(('.png', '.PNG')):
-            raise forms.ValidationError('Будь ласка, завантажуйте тільки зображення у форматі PNG.')
-        return image
+    # def clean_image(self):
+    #     image = self.cleaned_data['image']
+    #     if not image.name.lower().endswith(('.png', '.PNG')):
+    #         raise forms.ValidationError('Будь ласка, завантажуйте тільки зображення у форматі PNG.')
+    #     return image
 
 
 class DonatePhotoInline(admin.StackedInline):

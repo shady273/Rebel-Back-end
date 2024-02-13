@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 
 
-class Reports(models.Model):
+class AllReports(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title_uk = models.CharField()
     title_en = models.CharField()
@@ -16,7 +16,7 @@ class Reports(models.Model):
 
 class Items(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    reports = models.ForeignKey(Reports, related_name='items', on_delete=models.CASCADE)
+    reports = models.ForeignKey(AllReports, related_name='items', on_delete=models.CASCADE)
     title_uk = models.CharField()
     title_en = models.CharField()
     quantity = models.IntegerField()

@@ -21,7 +21,7 @@ services:
       - .env
     container_name: django
     ports:
-      - 8080:8080
+      - "8080:8080"
     volumes:
       - .:/app
     depends_on:
@@ -30,6 +30,13 @@ services:
       - PYTHONPATH=/app
     command: sh -c "cd ./admin_panel && gunicorn --bind 0.0.0.0:8080 admin_panel.wsgi:application"
 
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - django
 
 volumes:
   pg_data:

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from report.models import Items, Reports, ThanksPhoto
+from report.models import Items, AllReports, ThanksPhoto
 from report.models.chevrons import ChevronPhoto
 from report.models.news import News
 from report.models.photo import Photo, Video
@@ -16,7 +16,7 @@ class ReportsSerializer(serializers.ModelSerializer):
     items = ItemsSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Reports
+        model = AllReports
         fields = ['id', 'title_uk', 'title_en', 'items']
 
 
@@ -37,7 +37,7 @@ class ReportsPVSerializer(serializers.ModelSerializer):
     video = VideoSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Reports
+        model = AllReports
         fields = ['id', 'photo', 'video']
 
 
