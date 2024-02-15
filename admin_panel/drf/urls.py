@@ -9,6 +9,8 @@ from drf.views.reports import ReportsView
 from drf.views.support import SupportListView
 from drf.views.team import TeamListView
 
+app_name = 'drf'
+
 urlpatterns = [
     path('team/', TeamListView.as_view(), name='team'),
     path('hero/', HeroView.as_view(), name='hero'),

@@ -20,6 +20,9 @@ class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
         fields = ['id', 'image']
+        extra_kwargs = {
+            'url': {'view_name': 'admin_panel:section-detail'}
+        }
 
 
 class SectionSerializer(serializers.ModelSerializer):
@@ -28,6 +31,9 @@ class SectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Section
         fields = ['id', 'text_uk', 'text_en', 'photos']
+        extra_kwargs = {
+            'url': {'view_name': 'admin_panel:section-detail'}
+        }
 
 
 class TextAvtivitySerializer(serializers.ModelSerializer):

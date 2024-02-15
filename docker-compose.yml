@@ -24,6 +24,7 @@ services:
       - "8080:8080"
     volumes:
       - .:/app
+      - my_static_files:/app/venv/lib/python3.11/site-packages/django/contrib/admin/static/admin/
     depends_on:
       - postgres
     environment:
@@ -35,8 +36,11 @@ services:
       context: ./nginx
     ports:
       - 80:80
+    volumes:
+      - my_static_files:/static/
     depends_on:
       - django
 
 volumes:
   pg_data:
+  my_static_files:
