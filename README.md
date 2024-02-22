@@ -14,16 +14,40 @@ To run the project on the HTTPS protocol, start by generating a certificate:
 # Generate a certificate
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout key.pem -out cert.pem
 ```
-Modify the CMD in your Dockerfile as follows:
+## Nginx Configuration
 
-```
-CMD ["python", "admin_panel/manage.py", "runserver_plus", "0.0.0.0:8080", "--cert-file", "cert.pem", "--key-file", "key.pem"]
-```
+Nginx is used to configure routing and serve static files. Below is an example of an nginx configuration file:
 
-Using HTTP Protocol
-If you are using HTTP, certificates are not required. Change the CMD in your Dockerfile to:
-```commandline
-CMD ["python", "admin_panel/manage.py", "runserver", "0.0.0.0:8000"]
+```bash
+server {
+    listen 80;
+    server_name localhost;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name localhost;
+    ssl_certificate /sslcert/cert.pem;
+    ssl_certificate_key /sslcert/key.pem;
+
+    location / {
+        proxy_pass http://django:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_set_header X-CSRFToken $cookie_csrf_token;
+        proxy_pass_request_headers on;
+        proxy_set_header X-Forwarded-Method $request_method;
+        proxy_set_header X-Forwarded-Ssl on;
+    }
+
+    location /static/ {
+        alias /static/;
+    }
+}
 ```
 
 ## Running with Docker Compose
