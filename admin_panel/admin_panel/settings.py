@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env_config.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env_config.DEBUG
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -61,8 +61,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'admin_panel.urls'
-
-STATIC_URL = '/static/'
 
 TEMPLATES = [
     {
@@ -135,6 +133,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+STATIC_URL = '/static/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -144,3 +144,8 @@ CORS_ALLOWED_ORIGINS = [
     env_config.CORS_ALLOWED_ORIGINS_1,
     env_config.CORS_ALLOWED_ORIGINS_2,
 ]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True

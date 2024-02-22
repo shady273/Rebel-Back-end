@@ -2,12 +2,13 @@ from rest_framework import serializers
 
 from drf.models import ReportsImage, Reports, Merch
 from drf.models.activity import OurActivity, TextActivity
+from drf.models.quick_donate import QuickDonate
 from drf.models.donate import Donate
 from drf.models.hero import Section
 from drf.models.photo import Photo
-from drf.models.quick_donate import QuickDonate
 from drf.models.support import Support
 from drf.models.temmate import Teammate
+from report.serializers import ItemsSerializer
 
 
 class TeamSerializer(serializers.ModelSerializer):
@@ -20,9 +21,6 @@ class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
         fields = ['id', 'image']
-        extra_kwargs = {
-            'url': {'view_name': 'admin_panel:section-detail'}
-        }
 
 
 class SectionSerializer(serializers.ModelSerializer):
@@ -31,9 +29,6 @@ class SectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Section
         fields = ['id', 'text_uk', 'text_en', 'photos']
-        extra_kwargs = {
-            'url': {'view_name': 'admin_panel:section-detail'}
-        }
 
 
 class TextAvtivitySerializer(serializers.ModelSerializer):
@@ -60,9 +55,11 @@ class DonateSerializer(serializers.ModelSerializer):
 
 
 class ReportsImageSerializer(serializers.ModelSerializer):
+    report = ItemsSerializer(many=False, read_only=True)
+
     class Meta:
         model = ReportsImage
-        fields = ['id', 'title_uk', 'title_en', 'quantity', 'image']
+        fields = ['id', 'image', 'report']
 
 
 class ReportsSerializer(serializers.ModelSerializer):

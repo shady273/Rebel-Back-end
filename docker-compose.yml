@@ -2,6 +2,7 @@ version: '3'
 
 services:
   postgres:
+    restart: always
     image: postgres:latest
     container_name: postgres_db
     volumes:
@@ -15,6 +16,7 @@ services:
 
 
   django:
+    restart: always
     build:
       context: .
     env_file:
@@ -25,6 +27,7 @@ services:
     volumes:
       - .:/app
       - my_static_files:/app/venv/lib/python3.11/site-packages/django/contrib/admin/static/admin/
+      - my_media_files:/app/admin_panel/media/
     depends_on:
       - postgres
     environment:
@@ -32,15 +35,20 @@ services:
     command: sh -c "cd ./admin_panel && gunicorn --bind 0.0.0.0:8080 admin_panel.wsgi:application"
 
   nginx:
+    restart: always
     build:
       context: ./nginx
     ports:
       - 80:80
+      - 443:443
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     volumes:
-      - my_static_files:/static/
+      - my_static_files:/static/admin/
+      - my_media_files:/media/
     depends_on:
       - django
 
 volumes:
   pg_data:
   my_static_files:
+  my_media_files:

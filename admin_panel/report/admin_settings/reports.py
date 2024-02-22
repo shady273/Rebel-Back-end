@@ -1,4 +1,5 @@
-from report.admin_settings.base import BaseInline, BaseAdmin
+from drf.admin_settings.base import BaseInline
+from report.admin_settings.base import BaseAdmin
 from report.models import Items
 
 
